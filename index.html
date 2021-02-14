@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta htttp-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <!--********************************************-->
+    <style>
+
+    
+        button {
+
+            border-radius: 50%;
+            font-size: 20px;
+            color:mediumblue;
+            margin-top: 30%;
+            width: 100px;
+            border-color: darkred;
+            
+        }
+
+        div{
+            position: absolute;
+           top: 30%;
+           left:45%;
+           
+            width: 300px;
+            height: 250px;
+            background-color:lightskyblue;
+        
+            font-size: 30px;
+            text-align: center;
+        }
+
+        
+
+    </style>
+    <!--********************************************-->
+
+
+
+</head>
+<body>
+    <div>
+        <br>
+    <span id="dakika">00</span>:
+    <span id="saniye">00</span>:
+    <span id="salise">00</span>
+    <br>
+
+    <button id="bir" onclick="Baslat()">Baslat</button>
+    <button id="iki" onclick="Durdur()">Durdur</button>
+    <button id="uc" onclick="Sifirla()">Sifirla</button>
+
+   </div>
+
+
+    <!--******************************************-->
+
+
+    <script>
+        var sayac;
+        let salise = 0;
+        let saniye = 0;
+        let dakika = 0;
+        let salis = 0;
+        let saniy = 0;
+        let dakik = 0;
+        
+        let s1 = document.getElementById("dakika")
+        let s2 = document.getElementById("saniye")
+        let s3 = document.getElementById("salise")
+        let b1 = document.getElementById("bir")
+        let b2 = document.getElementById("iki")
+        let b3 = document.getElementById("uc")
+
+
+
+        /********************************************/
+        function Kronometre(){
+            
+            salise+=1
+            if (salise<100){
+                if (salise<10){
+                    salis = ikihane(salise)
+                    s3.innerHTML = salis
+                } else {
+               s3.innerHTML = salise}
+            } 
+            
+            else{
+                salise = 0
+               
+
+         /********************************************/    
+            
+
+                if (saniye<59){
+                    saniye+=1
+                    if (saniye<10){
+                    saniy = ikihane(saniye)
+                    s2.innerHTML = saniy
+                } else {
+                    s2.innerHTML = saniye
+                }
+                
+                } else{
+                    s2.innerHTML="00"
+                    saniye = 0
+
+
+        /********************************************/          
+                  
+
+                    if (dakika<60){
+                        dakika+=1
+                        if (dakika < 10){
+                            dakik = ikihane(dakika)
+                            s1.innerHTML = dakik
+                        } else {
+                        
+                        s1.innerHTML = dakika
+                        }
+                    }
+                    else{dakika=0}
+                }
+                
+            }   
+                
+
+        }
+
+
+        /********************************************/
+        function ikihane(sayi){
+            return (sayi<10 ? '0':'') + sayi
+
+        }
+        /********************************************/
+
+
+        uc.style.display = "none"
+        iki.style.display = "none"
+
+
+
+        /********************************************/
+        function Baslat() {
+           sayac = setInterval(Kronometre, 10)
+           uc.style.display = ""
+           iki.style.display = ""
+           bir.style.display = "none"
+           
+         }
+        /********************************************/
+
+
+
+
+        /********************************************/ 
+        function Durdur() { 
+           
+           clearInterval(sayac)
+           bir.innerHTML="Devam Et"
+           bir.style.display=""
+           iki.style.display="none"
+          }
+        /********************************************/
+
+
+
+
+        /********************************************/
+        function Sifirla() {
+            s1.innerHTML="00"
+            s2.innerHTML="00"
+            s3.innerHTML="00"
+            salise = 0
+            saniye = 0
+            dakika = 0
+            bir.style.display=""
+            iki.style.display="none"
+            uc.style.display="none"
+            bir.innerHTML="Baslat"
+            clearInterval(sayac)
+        }
+        /********************************************/
+
+    </script>
+
+
+</body>
+</html>
