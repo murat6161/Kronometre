@@ -17,7 +17,7 @@
             font-size: 20px;
             color:mediumblue;
             margin-top: 30%;
-            width: 100px;
+            width: 120px;
             border-color: darkred;
             
         }
@@ -25,7 +25,7 @@
         div{
             position: absolute;
            top: 30%;
-           left:45%;
+           left:40%;
            
             width: 300px;
             height: 250px;
@@ -51,9 +51,9 @@
     <span id="salise">00</span>
     <br>
 
-    <button id="bir" onclick="Baslat()">Baslat</button>
-    <button id="iki" onclick="Durdur()">Durdur</button>
-    <button id="uc" onclick="Sifirla()">Sifirla</button>
+    <button id="baslatButton" onclick="Baslat()">Baslat</button>
+    <button id="durdurButton" onclick="Durdur()">Durdur</button>
+    <button id="sifirlaButton" onclick="Sifirla()">Sifirla</button>
 
    </div>
 
@@ -66,16 +66,16 @@
         let salise = 0;
         let saniye = 0;
         let dakika = 0;
-        let salis = 0;
-        let saniy = 0;
-        let dakik = 0;
+        let ilkOnSalise = 0;
+        let ilkOnSaniye = 0;
+        let ilkOnDakika = 0;
         
         let s1 = document.getElementById("dakika")
         let s2 = document.getElementById("saniye")
         let s3 = document.getElementById("salise")
-        let b1 = document.getElementById("bir")
-        let b2 = document.getElementById("iki")
-        let b3 = document.getElementById("uc")
+        let b1 = document.getElementById("baslatButton")
+        let b2 = document.getElementById("durdurButton")
+        let b3 = document.getElementById("sifirlaButton")
 
 
 
@@ -85,8 +85,8 @@
             salise+=1
             if (salise<100){
                 if (salise<10){
-                    salis = ikihane(salise)
-                    s3.innerHTML = salis
+                    ilkOnSalise = ikihane(salise)
+                    s3.innerHTML = ilkOnSalise
                 } else {
                s3.innerHTML = salise}
             } 
@@ -101,8 +101,8 @@
                 if (saniye<59){
                     saniye+=1
                     if (saniye<10){
-                    saniy = ikihane(saniye)
-                    s2.innerHTML = saniy
+                    ilkOnSaniye = ikihane(saniye)
+                    s2.innerHTML = ilkOnSaniye
                 } else {
                     s2.innerHTML = saniye
                 }
@@ -118,8 +118,8 @@
                     if (dakika<60){
                         dakika+=1
                         if (dakika < 10){
-                            dakik = ikihane(dakika)
-                            s1.innerHTML = dakik
+                            ilkOnDakika = ikihane(dakika)
+                            s1.innerHTML = ilkOnDakika
                         } else {
                         
                         s1.innerHTML = dakika
@@ -142,17 +142,17 @@
         /********************************************/
 
 
-        uc.style.display = "none"
-        iki.style.display = "none"
+        sifirlaButton.style.display = "none"
+        durdurButton.style.display = "none"
 
 
 
         /********************************************/
         function Baslat() {
            sayac = setInterval(Kronometre, 10)
-           uc.style.display = ""
-           iki.style.display = ""
-           bir.style.display = "none"
+           sifirlaButton.style.display = ""
+           durdurButton.style.display = ""
+           baslatButton.style.display = "none"
            
          }
         /********************************************/
@@ -164,9 +164,9 @@
         function Durdur() { 
            
            clearInterval(sayac)
-           bir.innerHTML="Devam Et"
-           bir.style.display=""
-           iki.style.display="none"
+           baslatButton.innerHTML="Devam Et"
+           baslatButton.style.display=""
+           durdurButton.style.display="none"
           }
         /********************************************/
 
@@ -181,10 +181,10 @@
             salise = 0
             saniye = 0
             dakika = 0
-            bir.style.display=""
-            iki.style.display="none"
-            uc.style.display="none"
-            bir.innerHTML="Baslat"
+            baslatButton.style.display=""
+            durdurButton.style.display="none"
+            sifirlaButton.style.display="none"
+            baslatButton.innerHTML="Baslat"
             clearInterval(sayac)
         }
         /********************************************/
