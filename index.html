@@ -11,56 +11,75 @@
     <!-- -->
     <style>
 
-    body{
+    html {
         display: flex;
+        height: 100vh;
+    }
+
+    body{
+        margin: 0 auto;
         align-items: center;
         justify-content: center;
         height: 100vh;
     }
-        button {
 
-            border-radius: 50%;
-            font-size: 20px;
-            color:mediumblue;
-            margin-top: 30%;
-            width: 120px;
-            border-color: darkred;
+    .yeniEleman{
+        line-height: 0.5;
+        text-align: center;
+        font-size: 15px;
+        color: blue;
+        font-style: bold;
+        width: 300px;
+    }
+
+    button {
+         border-radius: 50%;
+         font-size: 15px;
+         color:mediumblue;
+         margin-top: 0%;
+         width: 90px;
+         border-color: darkred;
             
-        }
+    }
 
-        div{
-        
-           top: 30%;
-           left:40%;
-           
-            width: 600px;
-            height: 400px;
-            background-color:lightskyblue;
-        
-            font-size: 30px;
-            text-align: center;
-        }
+    div{
+            
+            
+        top: 30%;
+        left:40%;
+        width: 300px;
+        height: 150px;
+        background-color:lightskyblue;
+        font-size: 30px;
+        text-align: center;
+    }
+
+    span{
+        background-color: black;
+        color: red;
+    }
 
         
 
     </style>
+
     <!--********************************************-->
-
-
 
 </head>
 <body>
+
+    <p id="pList"></p>
     <div>
-        <br>
-    <span id="dakika">00</span>:
-    <span id="saniye">00</span>:
+    <br>
+    <span id="dakika">00</span> :
+    <span id="saniye">00</span> :
     <span id="salise">00</span>
     <br>
 
     <button id="baslatButton" onclick="Baslat()">Baslat</button>
     <button id="durdurButton" onclick="Durdur()">Durdur</button>
     <button id="sifirlaButton" onclick="Sifirla()">Sifirla</button>
-
+    <button id="yeniButton" onclick="Yeni()">Yeni</button>
    </div>
 
 
@@ -75,6 +94,11 @@
         let ilkOnSalise = 0;
         let ilkOnSaniye = 0;
         let ilkOnDakika = 0;
+        let yeniDkk = ""
+        let yeniSny = ""
+        let yeniSls = ""
+        let yeni = ""
+        let i=1
         
         let s1 = document.getElementById("dakika")
         let s2 = document.getElementById("saniye")
@@ -82,6 +106,8 @@
         let b1 = document.getElementById("baslatButton")
         let b2 = document.getElementById("durdurButton")
         let b3 = document.getElementById("sifirlaButton")
+        let b4 = document.getElementById("yeniButton")
+        let plist = document.querySelector("#pList")
 
 
 
@@ -150,6 +176,9 @@
 
         sifirlaButton.style.display = "none"
         durdurButton.style.display = "none"
+        yeniButton.style.display = "none"
+        
+
 
 
 
@@ -158,6 +187,7 @@
            sayac = setInterval(Kronometre, 10)
            sifirlaButton.style.display = ""
            durdurButton.style.display = ""
+           yeniButton.style.display = ""
            baslatButton.style.display = "none"
            
          }
@@ -187,13 +217,73 @@
             salise = 0
             saniye = 0
             dakika = 0
-            baslatButton.style.display=""
-            durdurButton.style.display="none"
-            sifirlaButton.style.display="none"
-            baslatButton.innerHTML="Baslat"
+            baslatButton.style.display = ""
+            durdurButton.style.display = "none"
+            sifirlaButton.style.display = "none"
+            yeniButton.style.display = "none"
+            baslatButton.innerHTML = "Baslat"
             clearInterval(sayac)
+            temizle()
+            i=1
         }
+
         /********************************************/
+
+        function SifirlaYeni() {
+            s1.innerHTML="00"
+            s2.innerHTML="00"
+            s3.innerHTML="00"
+            salise = 0
+            saniye = 0
+            dakika = 0
+            baslatButton.style.display = ""
+            durdurButton.style.display = "none"
+            sifirlaButton.style.display = "none"
+            yeniButton.style.display = "none"
+            baslatButton.innerHTML = "Baslat"
+            clearInterval(sayac)
+            i++
+            
+        }
+
+        /********************************************/
+
+        function Yeni(){
+            
+            yeniSny = s2.innerHTML 
+            yeniSls = s3.innerHTML
+            yeniDkk = s1.innerHTML
+            yeni = yeniDkk + " : " + yeniSny + " : " + yeniSls
+            
+            let item = document.createElement('p')
+            item.className = "yeniEleman"
+            item.innerHTML = yeni
+            plist.appendChild(item)
+            
+
+            
+            let yaz = i + ". süre: " + yeni
+            item.innerHTML = yaz
+           
+           
+            baslatButton.style.display = ""
+            durdurButton.style.display = "none"
+            sifirlaButton.style.display = "none"
+            yeniButton.style.display = "none"
+            SifirlaYeni()
+            Baslat()
+            
+        
+        }
+
+        /********************************************/
+
+        function temizle(){
+            let element = document.querySelector("#pList");
+            while (element.firstChild) {
+               element.removeChild(element.firstChild);
+            }
+        }
 
     </script>
 
